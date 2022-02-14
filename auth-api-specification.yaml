@@ -1,0 +1,157 @@
+openapi: 3.0.0
+info:
+  title: auth-api-specification
+  version: '1.0'
+  description: API specification for auth service
+  contact:
+    name: API Service
+servers:
+  - url: 'http://localhost:8080'
+paths:
+  /v1.0/auth/vendor/signup:
+    post:
+      summary: SendSignUpRequestMail
+      tags: []
+      responses:
+        '200':
+          description: OK - Mail Sent Successfully!
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  dispensary:
+                    type: object
+                    properties:
+                      dispensaryCompanyName:
+                        type: string
+                        minLength: 1
+                      dispensaryTin:
+                        type: string
+                        minLength: 1
+                      dispensaryHqAddress:
+                        type: string
+                        minLength: 1
+                      dispensaryHqBuisnessPhoneNumber:
+                        type: string
+                        minLength: 1
+                    required:
+                      - dispensaryCompanyName
+                      - dispensaryTin
+                      - dispensaryHqAddress
+                      - dispensaryHqBuisnessPhoneNumber
+                  dispensaryContact:
+                    type: object
+                    properties:
+                      dispensaryContactFirstName:
+                        type: string
+                        minLength: 1
+                      dispensaryContactLastName:
+                        type: string
+                        minLength: 1
+                      dispensaryContactEmail:
+                        type: string
+                        minLength: 1
+                      dispensaryContactPassword:
+                        type: string
+                        minLength: 1
+                    required:
+                      - dispensaryContactFirstName
+                      - dispensaryContactLastName
+                      - dispensaryContactEmail
+                      - dispensaryContactPassword
+                  errorMessages:
+                    type: array
+                    items:
+                      required: []
+                      properties: {}
+                  status:
+                    type: string
+                    minLength: 1
+                required:
+                  - dispensary
+                  - dispensaryContact
+                  - errorMessages
+                  - status
+                x-examples:
+                  example-1:
+                    dispensary:
+                      dispensaryCompanyName: Chanuka Cannabis Industries pvt ltd.
+                      dispensaryTin: TinCannabis
+                      dispensaryHqAddress: '16, York Lane, Amsterdam'
+                      dispensaryHqBuisnessPhoneNumber: '084552365856'
+                    dispensaryContact:
+                      dispensaryContactFirstName: Chanuka
+                      dispensaryContactLastName: Praveen
+                      dispensaryContactEmail: chanuka.p@aeturnum.com
+                      dispensaryContactPassword: chanuka@123
+                    errorMessages: []
+                    status: Mail Sent Successfully
+      operationId: post-v1.0-auth-vendor-signup
+      description: End point which use to send an email consists with sign up request details
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                dispensary:
+                  type: object
+                  properties:
+                    dispensaryCompanyName:
+                      type: string
+                      minLength: 1
+                    dispensaryTin:
+                      type: string
+                      minLength: 1
+                    dispensaryHqAddress:
+                      type: string
+                      minLength: 1
+                    dispensaryHqBuisnessPhoneNumber:
+                      type: string
+                      minLength: 1
+                  required:
+                    - dispensaryCompanyName
+                    - dispensaryTin
+                    - dispensaryHqAddress
+                    - dispensaryHqBuisnessPhoneNumber
+                dispensaryContact:
+                  type: object
+                  properties:
+                    dispensaryContactFirstName:
+                      type: string
+                      minLength: 1
+                    dispensaryContactLastName:
+                      type: string
+                      minLength: 1
+                    dispensaryContactEmail:
+                      type: string
+                      minLength: 1
+                    dispensaryContactPassword:
+                      type: string
+                      minLength: 1
+                  required:
+                    - dispensaryContactFirstName
+                    - dispensaryContactLastName
+                    - dispensaryContactEmail
+                    - dispensaryContactPassword
+              required:
+                - dispensary
+                - dispensaryContact
+              x-examples:
+                example-1:
+                  dispensary:
+                    dispensaryCompanyName: Chanuka Cannabis Industries pvt ltd.
+                    dispensaryTin: TinCannabis
+                    dispensaryHqAddress: '16, York Lane, Amsterdam'
+                    dispensaryHqBuisnessPhoneNumber: '084552365856'
+                  dispensaryContact:
+                    dispensaryContactFirstName: Chanuka
+                    dispensaryContactLastName: Praveen
+                    dispensaryContactEmail: chanuka.p@aeturnum.com
+                    dispensaryContactPassword: chanuka@123
+        description: Request payload to send email
+components:
+  schemas: {}
